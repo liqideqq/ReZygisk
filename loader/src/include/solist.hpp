@@ -13,11 +13,11 @@ namespace SoList  {
       #ifdef __LP64__
         inline static size_t solist_size_offset = 0x18;
         inline static size_t solist_next_offset = 0x28;
-        constexpr static size_t solist_realpath_offset = 0x1a8;
+        constexpr static size_t solist_realpath_offset = 0x1a0;
       #else
         inline static size_t solist_size_offset = 0x90;
         inline static size_t solist_next_offset = 0xa4;
-        constexpr static size_t solist_realpath_offset = 0x174;
+        constexpr static size_t solist_realpath_offset = 0x17c;
       #endif
 
       inline static const char *(*get_realpath_sym)(SoInfo *) = NULL;
