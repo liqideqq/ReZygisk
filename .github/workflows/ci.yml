@@ -33,7 +33,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4.2.1
         with:
-          cache-cleanup: true
+          gradle-home-cache-cleanup: true
 
       - name: Set up ccache
         uses: hendrikmuhs/ccache-action@v1.2
@@ -52,7 +52,6 @@ jobs:
           sed -i 's/org.gradle.unsafe.configuration-cache=true//g' gradle.properties
           ./gradlew zipRelease
           ./gradlew zipDebug
-
       - name: Prepare artifact
         if: success()
         id: prepareArtifact
@@ -61,7 +60,6 @@ jobs:
           debugName=`ls module/build/outputs/release/ReZygisk-v*-debug.zip | awk -F '(/|.zip)' '{print $5}'` && echo "debugName=$debugName" >> $GITHUB_OUTPUT
           unzip module/build/outputs/release/ReZygisk-v*-release.zip -d zksu-release
           unzip module/build/outputs/release/ReZygisk-v*-debug.zip -d zksu-debug
-
       - name: Upload release
         uses: actions/upload-artifact@v4
         with:
